@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Box, SimpleGrid, Heading, Flex, Select } from '@chakra-ui/react';
 import Card from '../components/Card';
 import { getPopularMovie, discoverMovies, getNowPlaying} from '../api/tmdb'; 
-
+import SearchMovie from '../components/SearchMovie';
 export interface Movie {
-    id: number;
+    movieId: number;
     title: string;
     poster_path: string;
 
@@ -58,10 +58,11 @@ return (
     <option value ="change">New Movie</option>
     </Select>
 </Flex>
+<SearchMovie />
 <SimpleGrid columns={[2, null, 5]} spacing="5">
     {movies.map(movie => (
     <Card 
-        key={movie.id} 
+        key={movie.movieId} 
         title={movie.title} 
         imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
     />

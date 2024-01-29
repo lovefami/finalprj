@@ -1,37 +1,38 @@
-export interface SlideItem{
+export interface SlideItem {
     id: number;
     title: string;
     genre: string;
-    imageUrl: string;
+    poster_path: string;
 }
 
-interface ContentMap{
+interface ContentMap {
     films: SlideItem[];
     series: SlideItem[];
 }
 
-export interface Slides{
+export interface Slides {
     [genre: string]: SlideItem[];
 }
 
-export const selectionFilter = (contentMap: ContentMap): Slides => {
+export const selectionFilter = (contentMap: ContentMap, searchTerm: string = ''): Slides => {
     const slides: Slides = {};
 
-
-    const addContenttoSlides = (contentList: SlideItem[]) =>{
+    const addContentToSlides = (contentList: SlideItem[]) => {
         contentList.forEach(slideItem => {
-            if (slides[slideItem.genre]){
-                slides[slideItem.genre].push(slideItem);
-            }else{
-                slides[slideItem.genre]= [slideItem];
+            if (searchTerm === '' || slideItem.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                if (slides[slideItem.genre]) {
+                    slides[slideItem.genre].push(slideItem);
+                } else {
+                    slides[slideItem.genre] = [slideItem];
+                }
             }
         });
     };
-    addContenttoSlides(contentMap.films);
-    addContenttoSlides(contentMap.series);
+
+    addContentToSlides(contentMap.films);
+    addContentToSlides(contentMap.series);
 
     return slides;
-
 };
 
 export default selectionFilter;
