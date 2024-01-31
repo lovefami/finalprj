@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/index';
 import BrowseContainer from './containers/BrowseContainer';
 import ShowPage from './components/ShowPage';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path = "/" element ={<ShowPage />} />
+          <Route path="/" element={<ShowPage />} />
+          <Route path="/login" element={<Login />} /> 
           <Route path="/browse" element={<BrowseContainer />} />
         </Routes>
       </Router>

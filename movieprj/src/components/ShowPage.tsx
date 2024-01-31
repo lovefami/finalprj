@@ -1,6 +1,8 @@
 import React from 'react';
 import './ShowPage.css';
 import movieclip from '../assets/movieclip.mp4';
+import { Link } from 'react-router-dom';
+
 const ShowPage = () => {
     return (
         <div className = "showpage-container">
@@ -12,7 +14,10 @@ const ShowPage = () => {
                     <h1>Track the most popular Movie, shows and more.</h1>
                     <form className="sign-up">
                         <input type="email" placeholder = "Email address" className="email-input" />
-                        <button type="submit" className="get-Started-button">get Started</button>
+                        <Link to ="/login">
+                            <button type="submit" className="get-Started-button">get Started</button>
+                        </Link>
+                        
                     </form>
                 </div>
             </div>

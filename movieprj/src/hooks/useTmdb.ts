@@ -13,7 +13,7 @@ export const useTmdb = <T,>(movieId: string): { data: T | null, loading: boolean
         try {
             setLoading(true);
             const movieData = await getMovie(movieId);
-            setData(movieData as T); // 类型断言为 T
+            setData(movieData as T); 
         } catch (err) {
             setError(err as Error);
             console.error('Error fetching data:', err);

@@ -50,6 +50,8 @@ const SearchMovie: React.FC = () => {
                         key={movie.movieId}
                         title={movie.title}
                         imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        vote_average={0}
+                        genre_ids={[]} 
                     />
                 ))}
             </SimpleGrid>

@@ -1,8 +1,9 @@
 export interface SlideItem {
-    id: number;
+    movieId: number;
     title: string;
     genre: string;
     poster_path: string;
+    selection?: string;
 }
 
 interface ContentMap {
