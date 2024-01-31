@@ -16,7 +16,7 @@ const Header = () => {
                         <Link to="/">Home</Link>
                     </Text>
                     <Text p={4}>
-                        <Link to="/about">About</Link>
+                        <Link to="/browse">Movie</Link>
                     </Text>
                     <IconButton
                         aria-label={`Switch to ${colorMode === 'light' ? 'dark' : 'light'} mode`}

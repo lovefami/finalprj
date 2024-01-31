@@ -1,62 +1,39 @@
-// src/components/SearchMovie.tsx
-import React, { useState, useEffect,useRef } from 'react';
-import { useMovieSearch } from '../hooks/useMovieSearch';
-import { Box, Input, SimpleGrid } from '@chakra-ui/react';
-import Card from './Card';
+import React, { useState, useEffect } from 'react';
+import { Box, Input, Button } from '@chakra-ui/react';
 
-const SearchMovie: React.FC = () => {
-    const [query, setQuery] = useState('');
-    const [debouncedQuery, setDebouncedQuery] = useState(query);
-    const { movies} = useMovieSearch(debouncedQuery);
-    const inputRef = useRef<HTMLInputElement>(null);
+interface SearchMovieProps {
+  onSearch: (query: string) => void;
+  query: string;
+}
 
+const SearchMovie: React.FC<SearchMovieProps> = ({ onSearch }) => {
+  const [localQuery, setLocalQuery] = useState('');
 
-    useEffect(() => {
-        // setup timer
-        const handler = setTimeout(() => {
-            setDebouncedQuery(query);
-        }, 500);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onSearch(localQuery);
+    }, 500); // 设置500毫秒的防抖时间
 
-        // time reset
-        return () => {
-            clearTimeout(handler);
-        };
-    }, [query]);
+    return () => clearTimeout(timer); // 清除定时器
+  }, [localQuery, onSearch]);
 
-    useEffect(() => {
-        //allow focu stay in input 
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, [movies]);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalQuery(event.target.value);
+  };
 
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-    };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSearch(localQuery);
+  };
 
-
-    return (
-        <Box>
-            <Input
-                type="text"
-                placeholder="search movie"
-                value={query}
-                onChange={handleSearch}
-                style={{ width: '100%', height: '40px', fontSize: '1em' }}
-            />
-            <SimpleGrid columns={[2, null, 5]} spacing="5">
-                {movies.map((movie) => (
-                    <Card
-                        key={movie.movieId}
-                        title={movie.title}
-                        imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        vote_average={0}
-                        genre_ids={[]} 
-                    />
-                ))}
-            </SimpleGrid>
-        </Box>
-    );
+  return (
+    <Box>
+      <form onSubmit={handleSubmit}>
+        <Input value={localQuery} onChange={handleSearchChange} placeholder="Search for movies..." />
+        <Button type="submit">Search</Button>
+      </form>
+    </Box>
+  );
 };
 
 export default SearchMovie;

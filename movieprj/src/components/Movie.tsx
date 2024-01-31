@@ -11,6 +11,7 @@ interface MovieData {
   poster_path: string;
   vote_average: number;
   genre_ids: number[];
+  genres?:string[];
 }
 
 const Movie: React.FC<MovieProps> = ({ movieId }) => {
@@ -32,7 +33,7 @@ const Movie: React.FC<MovieProps> = ({ movieId }) => {
     <div>
       <Card
         title={data.title}
-        imageUrl={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+        poster_path={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
         vote_average={data.vote_average}
         genre_ids={data.genre_ids}
       />

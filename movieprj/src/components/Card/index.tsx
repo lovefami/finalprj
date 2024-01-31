@@ -8,32 +8,31 @@ import {
     CardFooter,
     Image,
     Text,
-  } from "@chakra-ui/react";
+} from "@chakra-ui/react";
 
-  import { fetchGenreNames } from "../../api/tmdb"; 
-
+import { fetchGenreNames } from "../../api/tmdb"; 
 
 export interface CardProps {
-  title: string;
-  imageUrl: string;
-  vote_average: number;
-  genre_ids: number[];
-  genres?: string[];
+    title: string;
+    poster_path: string;
+    vote_average: number;
+    genre_ids: number[];
+    genres?: string[];
 }
 
 const MovieCard: React.FC<CardProps> = ({
-  title,
-  imageUrl,
-  vote_average,
-  genre_ids,
-  genres,
+    title,
+    poster_path,
+    vote_average,
+    genre_ids,
+    genres,
 }) => {
     const [genreNames, setGenreNames] = useState<string[]>([]);
     
     useEffect(() => {
         const fetchGenreData = async () => {
           try {
-            const names = await fetchGenreNames(genre_ids);
+            const names: string[] = await fetchGenreNames(genre_ids);
             setGenreNames(names);
           } catch (error) {
             console.error('Error fetching genre names:', error);
@@ -46,7 +45,7 @@ const MovieCard: React.FC<CardProps> = ({
   return (
     <Card maxW="sm">
       <CardBody>
-        <Image src={imageUrl} alt={title} borderRadius="lg" />
+        <Image src={poster_path} alt={title} borderRadius="lg" />
         <Stack mt="6" spacing="3">
           <Heading size="md" textAlign="center">
             {title}
