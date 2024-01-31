@@ -13,6 +13,7 @@ import {
 import { fetchGenreNames } from "../../api/tmdb"; 
 
 export interface CardProps {
+    id: string;
     title: string;
     poster_path: string;
     vote_average: number;
@@ -21,6 +22,7 @@ export interface CardProps {
 }
 
 const MovieCard: React.FC<CardProps> = ({
+    id, 
     title,
     poster_path,
     vote_average,
