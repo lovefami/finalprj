@@ -5,7 +5,7 @@ import Header from './components/Header/index';
 import BrowseContainer from './containers/BrowseContainer';
 import ShowPage from './components/ShowPage';
 import Login from './components/Login';
-
+import Signup from './components/Signup';
 function App() {
   return (
     <ChakraProvider>
@@ -15,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ShowPage />} />
           <Route path="/login" element={<Login />} /> 
+          <Route path="/signup" element={<Signup />} />
           <Route path="/browse" element={<BrowseContainer />} />
         </Routes>
       </Router>

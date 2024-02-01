@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { API_KEY } from '../service/api_client';
 
 export interface Movie {
-    movieId: number;
+    id: number;
     title: string;
     poster_path: string;
     vote_average: number;
     genre_ids: number[];
-    genres: string[];// 添加 genres 属性
+    genres: string[];
 }
 
 export const useMovieSearch = (query: string, page: number = 1) => {
@@ -19,7 +19,7 @@ export const useMovieSearch = (query: string, page: number = 1) => {
         setLoading(true);
         setError(null);
 
-        // 获取所有可能的电影类型
+
         const fetchGenres = async () => {
             const genreResponse = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`);
             const genreData = await genreResponse.json();

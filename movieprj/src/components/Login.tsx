@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import './Login.css'; // 确保您有一个对应的 CSS 文件
+import './Login.css'; 
 import movieclip from '../assets/movieclip.mp4';
 import './Login.css'
 interface UserCredentials {

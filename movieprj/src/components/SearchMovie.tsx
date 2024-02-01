@@ -12,9 +12,9 @@ const SearchMovie: React.FC<SearchMovieProps> = ({ onSearch }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onSearch(localQuery);
-    }, 500); // 设置500毫秒的防抖时间
+    }, 500); 
 
-    return () => clearTimeout(timer); // 清除定时器
+    return () => clearTimeout(timer); 
   }, [localQuery, onSearch]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

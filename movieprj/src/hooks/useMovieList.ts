@@ -11,38 +11,37 @@ export interface Movie {
 }
 
 export const useMoviesList = (category: string) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      setLoading(true);
-      try {
-        let data;
-        switch (category) {
-          case 'popular':
-            data = await getPopularMovie();
-            break;
-          case 'discover':
-            data = await getTrendingMovies('week');
-            break;
-          case 'change':
-            data = await getNowPlaying();
-            break;
-          default:
-            data = [];
+    useEffect(() => {
+        const fetchMovies = async () => {
+        setLoading(true);
+        try {
+            let data;
+            switch (category) {
+            case 'popular':
+                data = await getPopularMovie();
+                break;
+            case 'discover':
+                data = await getTrendingMovies('week');
+                break;
+            case 'change':
+                data = await getNowPlaying();
+                break;
+            default:
+                data = [];
+            }
+            setMovies(data);
+        } catch (err) {
+            setError(err as Error);
+        } finally {
+            setLoading(false);
         }
-        setMovies(data);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setLoading(false);
-      }
-    };
+        };  
 
     fetchMovies();
-  }, [category]);
-
-  return { movies, loading, error };
+}, [category]);
+return { movies, loading, error };
 };

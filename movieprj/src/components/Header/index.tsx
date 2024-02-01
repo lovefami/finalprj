@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Flex, Text, IconButton, useColorMode } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import './index.css'; // Directly import the CSS file
+import './index.css'; 
 
 const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode();

@@ -33,7 +33,7 @@ export const getMovie = async (movieId: string) => {
     return response.data;
 };
 
-// 获取热门电影
+
 export const getPopularMovie = async () => {
     const response = await apiClient.get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=1&region=US`);
     return (response.data.results);
