@@ -67,8 +67,8 @@ const MovieDetail: React.FC = () => {
               templateColumns={{ base: '1fr', md: '1fr 2fr' }}
               gap={6}
               p={8}
-              textAlign={{ base: 'center', md: 'left' }} // 调整为左对齐
-              alignItems="start" // 顶部对齐
+              textAlign={{ base: 'center', md: 'left' }} 
+              alignItems="start" 
               maxWidth="container.xl"
               margin="auto"
             >
@@ -115,7 +115,6 @@ const MovieDetail: React.FC = () => {
                       <Text fontWeight="bold">Jason Fuchs</Text>
                       <Text>Writer</Text>
                     </Box>
-                    {/* Include other crew members as needed */}
                   </Grid>
                 </Box>
               </Box>
