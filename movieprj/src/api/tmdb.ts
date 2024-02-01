@@ -34,26 +34,29 @@ export const getMovie = async (movieId: string) => {
 };
 
 
-export const getPopularMovie = async () => {
-    const response = await apiClient.get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=1&region=US`);
+export const getPopularMovie = async (page:number):Promise<any> => {
+    const response = await apiClient.get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}&region=US`);
     return (response.data.results);
 };
 
-export const getTrendingMovies = async (timeWindow: 'day' | 'week') => {
+export const getTrendingMovies = async (timeWindow: 'day' | 'week', page: number) => {
     const response = await tmdbApi.get(`/trending/movie/${timeWindow}`, {
         params: {
             api_key: API_KEY,
             language: 'en-US', 
+            page: page,
         },
       });
+    //   console.log(response);
       return (response.data.results);
 
   };
   
+  
 
-export const getNowPlaying = async () => {
+  export const getNowPlaying = async (page: number) => {
     const startDate = getStartDate();
-    const response = await tmdbApi.get(`/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=US`, {
+    const response = await tmdbApi.get(`/movie/now_playing?api_key=${API_KEY}&language=en-US&region=US&page=${page}`, {
         params: {
         start_date: startDate.toISOString().split("T")[0],
         api_key: API_KEY,

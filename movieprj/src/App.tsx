@@ -6,6 +6,7 @@ import BrowseContainer from './containers/BrowseContainer';
 import ShowPage from './components/ShowPage';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import MovieDetail from './components/MovieDetails/MovieDetails';
 function App() {
   return (
     <ChakraProvider>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           <Route path="/signup" element={<Signup />} />
           <Route path="/browse" element={<BrowseContainer />} />
+          <Route path="/movie/:movieId" element={<MovieDetail />} />
         </Routes>
       </Router>
     </ChakraProvider>
