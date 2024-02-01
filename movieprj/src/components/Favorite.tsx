@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import { AuthType } from '../components/Auth';
-import LoginPromptModal from './LoginPromptModel'; // Adjust the import path as needed
+import LoginPromptModal from './LoginPromptModel'; 
 
 interface FavoriteProps {
     user: AuthType | null;
-    title: string; // Added title as a prop
+    title: string; 
     isFavorite: boolean;
-    updateFavoriteStatus: (status: boolean) => void; // Changed the function name and type
+    updateFavoriteStatus: (status: boolean) => void; 
 }
 
 const Favorite = ({ user, title, isFavorite, updateFavoriteStatus }: FavoriteProps) => {
@@ -23,7 +23,7 @@ const Favorite = ({ user, title, isFavorite, updateFavoriteStatus }: FavoritePro
             return;
         }
         const newFavoriteStatus = !isFavorite;
-        updateFavoriteStatus(newFavoriteStatus); // Update the favorite status
+        updateFavoriteStatus(newFavoriteStatus); 
 
         try {
             const response = await fetch('api/favorites', {
@@ -44,7 +44,7 @@ const Favorite = ({ user, title, isFavorite, updateFavoriteStatus }: FavoritePro
             console.log(newFavoriteStatus ? "Added to Favorite" : "Removed from Favorite");
         } catch (error) {
             console.error("Something Wrong with adding Favorite", error);
-            updateFavoriteStatus(!newFavoriteStatus); // Revert the favorite status on error
+            updateFavoriteStatus(!newFavoriteStatus); 
         }
     };
 
