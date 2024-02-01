@@ -55,7 +55,6 @@ const MovieDetail: React.FC = () => {
         spoken_languages,
         title,
         vote_average,
-        vote_count,
     } = movie;
 
     const percentage = (vote_average / 10) * 100;
@@ -64,64 +63,65 @@ const MovieDetail: React.FC = () => {
         <>
           <Center bg="black" color="white" minHeight="100vh">
             <Grid
-              templateColumns={{ base: '1fr', md: '1fr 2fr' }}
-              gap={6}
-              p={8}
-              textAlign={{ base: 'center', md: 'left' }} 
-              alignItems="start" 
-              maxWidth="container.xl"
-              margin="auto"
+                templateColumns={{ base: '1fr', md: '1fr 2fr' }}
+                gap={6}
+                p={8}
+                textAlign={{ base: 'center', md: 'left' }} 
+                alignItems="start" 
+                maxWidth="container.xl"
+                margin="auto"
             >
-              <Box>
-                <Image
-                  src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
-                  alt={title}
-                  borderRadius="lg"
-                  boxShadow="xl"
-                />
-              </Box>
-              <Box>
-                <Heading as="h2" size="2xl" mb={4}>
-                  {title} ({new Date(release_date).getFullYear()})
-                </Heading>
-                <Text fontSize="md" mb={2}>{tagline}</Text>
-                <CircularProgress value={percentage} size="100px" color="green.400" mb={4}>
-                  <CircularProgressLabel>{percentage.toFixed(0)}%</CircularProgressLabel>
-                </CircularProgress>
-                <Box mb={4}>
-                  {genres.map((genre) => (
-                    <Badge key={genre.id} mr={2} colorScheme="green">
-                      {genre.name}
-                    </Badge>
-                  ))}
+                <Box>
+                    <Image
+                    src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
+                    alt={title}
+                    borderRadius="lg"
+                    boxShadow="xl"
+                    />
                 </Box>
-                <Text fontSize="md" mb={4}><strong>Release Date:</strong> {new Date(release_date).toDateString()}</Text>
-                <Text fontSize="md" mb={4}><strong>Spoken Languages:</strong> {spoken_languages.map((lang) => lang.english_name).join(', ')}</Text>
-                <Button colorScheme="teal" size="lg" mb={4}>Play Trailer</Button>
-                {/* Overview Section */}
-                <Box bg="gray.700" p={6} borderRadius="md">
-                  <Heading as="h3" size="lg" mb={4} color="teal.300">
-                    Overview
-                  </Heading>
-                  <Text mb={6}>
-                    {overview}
-                  </Text>
-                  <Grid templateColumns="repeat(auto-fit, minmax(120px, 1fr))" gap={4}>
-                    <Box>
-                      <Text fontWeight="bold">Matthew Vaughn</Text>
-                      <Text>Director</Text>
+                <Box>
+                    <Heading as="h2" size="2xl" mb={4}>
+                        {title} ({new Date(release_date).getFullYear()})
+                    </Heading>
+                    <Text fontSize="md" mb={2}>{tagline}</Text>
+                    <CircularProgress value={percentage} size="100px" color="green.400" mb={4}>
+                        <CircularProgressLabel>{percentage.toFixed(0)}%</CircularProgressLabel>
+                    </CircularProgress>
+                    <Box mb={4}>
+                        {genres.map((genre) => (
+                            <Badge key={genre.id} mr={2} colorScheme="green">
+                            {genre.name}
+                            </Badge>
+                        ))}
                     </Box>
-                    <Box>
-                      <Text fontWeight="bold">Jason Fuchs</Text>
-                      <Text>Writer</Text>
+                    <Text fontSize="md" mb={4}><strong>Release Date:</strong> {new Date(release_date).toDateString()}</Text>
+                    <Text fontSize="md" mb={4}><strong>Spoken Languages:</strong> {spoken_languages.map((lang) => lang.english_name).join(', ')}</Text>
+                    <Button colorScheme="teal" size="lg" mb={4}>Play Trailer</Button>
+                    {/* Overview Section */}
+
+                    <Box bg="gray.700" p={6} borderRadius="md">
+                        <Heading as="h3" size="lg" mb={4} color="teal.300">
+                            Overview
+                        </Heading>
+
+                        <Text mb={6}>
+                            {overview}
+                        </Text>
+                        <Grid templateColumns="repeat(auto-fit, minmax(120px, 1fr))" gap={4}>
+                            <Box>
+                                <Text fontWeight="bold">Matthew Vaughn</Text>
+                                <Text>Director</Text>
+                            </Box>
+                            <Box>
+                                <Text fontWeight="bold">Jason Fuchs</Text>
+                                <Text>Writer</Text>
+                            </Box>
+                        </Grid>
                     </Box>
-                  </Grid>
                 </Box>
-              </Box>
             </Grid>
-          </Center>
-        </>
-      );
-                  }
+        </Center>
+    </>
+);}
 
 export default MovieDetail;
