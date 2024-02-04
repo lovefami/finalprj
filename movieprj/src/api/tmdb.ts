@@ -34,9 +34,9 @@ export const getMovie = async (movieId: string) => {
 };
 
 
-export const getPopularMovie = async (page:number):Promise<any> => {
+export const getPopularMovie = async (page: number): Promise<any> => {
     const response = await apiClient.get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}&region=US`);
-    return (response.data.results);
+    return response.data; 
 };
 
 export const getTrendingMovies = async (timeWindow: 'day' | 'week', page: number) => {
@@ -48,7 +48,7 @@ export const getTrendingMovies = async (timeWindow: 'day' | 'week', page: number
         },
       });
     //   console.log(response);
-      return (response.data.results);
+      return (response.data);
 
   };
   
@@ -62,7 +62,7 @@ export const getTrendingMovies = async (timeWindow: 'day' | 'week', page: number
         api_key: API_KEY,
     },
 });
-    return (response.data.results);
+    return (response.data);
 } 
 
 const getStartDate = () => {
@@ -100,5 +100,7 @@ export const fetchGenreNames = async (genreIds: number[]): Promise<string[]> => 
         console.error('Error fetching genre names:', error);
         return [];
         }
+
+        
 };
 
